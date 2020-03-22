@@ -12,7 +12,7 @@ type Jwt struct{}
 // 创建token
 func (j Jwt) CreateToken(user entity.User) (string, error) {
 	//自定义claim
-	claim := jwt.MapClaims{
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"id":       user.Id,
 		"nickName": user.NickName,
 		"exp":      100,
@@ -20,14 +20,12 @@ func (j Jwt) CreateToken(user entity.User) (string, error) {
 		"nbf": time.Now().Unix(),
 		// 签发时间
 		"iat": time.Now().Unix(),
-	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
+	})
 	return token.SignedString([]byte(""))
 }
 
 // 验证token
-func ParseToken(tokens string) (*entity.User, error) {
+func (j Jwt) ParseToken(tokens string) (*entity.User, error) {
 	user := new(entity.User)
 	token, err := jwt.Parse(tokens, func(token *jwt.Token) (interface{}, error) {
 		return []byte(""), nil
