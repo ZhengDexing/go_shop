@@ -16,6 +16,7 @@ func CheckLogin(context *gin.Context) {
 	jwt := new(Jwt)
 	_, err = jwt.ParseToken(sign)
 	if err != nil {
+		context.Abort()
 		context.JSON(http.StatusForbidden, util.RespOut(util.Forbidden, ""))
 		return
 	}
