@@ -8,5 +8,5 @@ type User struct {
 }
 
 func (u User) AddUser() {
-	db.Query(addUser)
+	_, _ = db.Query(addUser)
 }

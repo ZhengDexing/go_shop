@@ -39,9 +39,9 @@ func GetConfig() (*Config, error) {
 	env := os.Getenv("GIN_MODE")
 	switch env {
 	case "release":
-		path = "./config.ini"
+		path = "./config/config.ini"
 	default:
-		path = "./config-debug.ini"
+		path = "./config/config-debug.ini"
 	}
 	config := new(Config)
 	cfg, err := ini.LoadSources(ini.LoadOptions{

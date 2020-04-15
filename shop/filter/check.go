@@ -1,4 +1,4 @@
-package security
+package filter
 
 import (
 	"github.com/gin-gonic/gin"
@@ -10,15 +10,18 @@ import (
 func CheckLogin(context *gin.Context) {
 	sign, err := context.Cookie("sign")
 	if err != nil {
+		context.Abort()
 		context.JSON(http.StatusForbidden, util.RespOut(util.Forbidden, ""))
 		return
 	}
-	jwt := new(Jwt)
-	_, err = jwt.ParseToken(sign)
+	jwt := new(util.Jwt)
+	user, err := jwt.ParseToken(sign)
 	if err != nil {
 		context.Abort()
 		context.JSON(http.StatusForbidden, util.RespOut(util.Forbidden, ""))
 		return
 	}
+	context.Set("userId", user.Id)
+	context.Set("nickName", user.NickName)
 	context.Next()
 }
