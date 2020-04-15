@@ -2,14 +2,14 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"go_shop/controller"
-	"go_shop/security"
-	"go_shop/util"
+	"go_shop/shop/controller"
+	"go_shop/shop/security"
+	"go_shop/tools/logger"
 )
 
 // 路由
 func Entry(e *gin.Engine) {
-	e.Use(util.RoutersLogger)
+	e.Use(logger.RoutersLogger)
 	e.POST("/registered", controller.Registered)
 	e.POST("/login")
 

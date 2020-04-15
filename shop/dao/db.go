@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"go_shop/util"
+	"go_shop/shop/util"
 )
 
 var db *sql.DB

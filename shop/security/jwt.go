@@ -3,7 +3,7 @@ package security
 import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
-	"go_shop/entity"
+	"go_shop/shop/entity"
 	"time"
 )
 

@@ -2,7 +2,7 @@ package security
 
 import (
 	"github.com/gin-gonic/gin"
-	"go_shop/util"
+	"go_shop/shop/util"
 	"net/http"
 )
 

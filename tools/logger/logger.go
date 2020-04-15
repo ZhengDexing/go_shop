@@ -1,4 +1,4 @@
-package util
+package logger
 
 import (
 	"fmt"
@@ -10,10 +10,11 @@ import (
 )
 
 var (
-	All     *log.Logger // 记录所有日志
-	Info    *log.Logger // 重要的信息
-	Warning *log.Logger // 需要注意的信息
-	Error   *log.Logger // 非常严重的问题
+	FileName string      // 日志文件名
+	All      *log.Logger // 记录所有日志
+	Info     *log.Logger // 重要的信息
+	Warning  *log.Logger // 需要注意的信息
+	Error    *log.Logger // 非常严重的问题
 )
 
 func init() {
@@ -22,7 +23,7 @@ func init() {
 		log.Fatalln("Failed to open error log file:", err)
 	}
 
-	All = log.New(io.MultiWriter(file, os.Stdout), "TRACE: ", log.Ldate|log.Ltime|log.Lshortfile)
+	All = log.New(io.MultiWriter(file, os.Stdout), "All: ", log.Ldate|log.Ltime|log.Lshortfile)
 
 	Info = log.New(io.MultiWriter(file, os.Stdout), "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
 
