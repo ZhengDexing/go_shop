@@ -3,13 +3,13 @@ package routers
 import (
 	"github.com/gin-gonic/gin"
 	"go_shop/shop/controller"
+	"go_shop/shop/filter"
 	"go_shop/shop/security"
-	"go_shop/tools/logger"
 )
 
 // 路由
 func Entry(e *gin.Engine) {
-	e.Use(logger.RoutersLogger)
+	e.Use(filter.RoutersLogger)
 	e.POST("/registered", controller.Registered)
 	e.POST("/login")
 

@@ -8,10 +8,12 @@ import (
 	"go_shop/tools/logger"
 )
 
+var log = logger.LoggerByDay("main")
+
 func main() {
 	config, err := util.GetConfig()
 	if err != nil {
-		logger.Error.Println(err)
+		log.Error(err)
 		panic("获取配置文件异常")
 	}
 
