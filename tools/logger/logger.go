@@ -17,7 +17,7 @@ type Logger struct{}
 func LoggerByDay(fileName string) *Logger {
 	var err error
 	createDir()
-	fileName = fmt.Sprintf("./logs/%s_%s%s", fileName, FormatTime(), ".log")
+	fileName = fmt.Sprintf("./logs/%s_%s%s", fileName, formatTime(), ".log")
 	file, err = os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		panic(err)
@@ -41,7 +41,7 @@ func createDir() {
 }
 
 // 时间格式化
-func FormatTime() string {
+func formatTime() string {
 	t := time.Now()
 	return t.Format("2006-01-02")
 }
